@@ -38,11 +38,13 @@ export default {
         let obj = {
           target: this.artid,
           content: this.commentMessage,
+          art_id: this.$store.state.articleId,
         };
         let { data } = await commentPostApi(obj);
         console.log(data.data.new_obj);
         this.commentMessage = "";
-        this.$store.commit("setcomment", data.data.new_obj);
+        // this.$store.commit("setcomment", data.data.new_obj);
+        this.$emit("setRecommentObj", data.data.new_obj);
         this.$emit("closepopup");
       } catch (err) {
         console.log(err);

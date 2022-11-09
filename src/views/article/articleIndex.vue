@@ -75,6 +75,7 @@
           type="a"
           @totalCountFn="totalCountFn"
           @openReplyCom="openReplyCom"
+          :newCommentObj="newCommentObj"
         ></comment-list>
       </div>
 
@@ -111,10 +112,15 @@
           <comment-post
             :artid="articleContent.art_id"
             @closepopup="addCommentShow = false"
+            @setRecommentObj="setRecommentObj"
         /></van-popup>
       </div>
       <van-popup v-model="replyComShow" position="bottom" style="height: 100%">
-        <comment-reply :comTwoItem="comOneItem"></comment-reply>
+        <comment-reply
+          v-if="replyComShow"
+          :comTwoItem="comOneItem"
+          @closepopup="replyComShow = false"
+        ></comment-reply>
       </van-popup>
     </div>
     <!-- /底部区域 -->
@@ -151,14 +157,16 @@ export default {
       loadingShow: false, //加载中
       statusShow: 0,
       articleContent: {},
-      totalCountNum: "",
+      totalCountNum: "", //评论总数量
       addCommentShow: false,
       replyComShow: false,
-      comOneItem: {},
+      comOneItem: {}, //
+      newCommentObj: {},
     };
   },
   created() {
     this.addarticle();
+    this.$store.commit("setarticleId", this.articleId);
   },
   computed: {},
   watch: {},
@@ -202,12 +210,15 @@ export default {
       this.totalCountNum = val;
     },
     addComment() {
-      console.log(12);
       this.addCommentShow = true;
     },
     openReplyCom(item) {
       this.replyComShow = true;
       this.comOneItem = item;
+    },
+    setRecommentObj(obj) {
+      this.newCommentObj = obj;
+      this.totalCountNum++;
     },
   },
 };

@@ -6,6 +6,7 @@
         :finished="finished"
         finished-text="没有更多了"
         @load="onLoad"
+        :immediate-check="false"
         ><comment-item
           v-for="item in commentlist"
           :key="item.com_id"
@@ -26,6 +27,7 @@ export default {
     articleIdComment: {
       type: [Number, String],
     },
+    newCommentObj: Object,
   },
   components: {
     commentItem,
@@ -39,7 +41,7 @@ export default {
     };
   },
   created() {
-    // this.onLoad();
+    this.onLoad();
   },
   methods: {
     async onLoad() {
@@ -68,9 +70,14 @@ export default {
     },
   },
   watch: {
-    "$store.state.newcomment": {
+    newCommentObj: {
       handler(newVal) {
-        this.commentlist.unshift(newVal);
+        let bool = this.commentlist.find((item) => {
+          return item.com_id === newVal.com_id;
+        });
+        if (!bool) {
+          this.commentlist.unshift(newVal);
+        }
       },
       deep: true,
     },

@@ -48,6 +48,12 @@ const routes = [
     component: () => import("@/views/article/articleIndex.vue"),
     props: true,
   },
+  {
+    // 编辑用户资料页面
+    path: "/useredit",
+    component: () => import("@/views/my/userEdit.vue"),
+    props: true,
+  },
 ];
 
 const router = new VueRouter({

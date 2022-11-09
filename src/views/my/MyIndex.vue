@@ -7,7 +7,7 @@
         <div class="logintop">
           <van-image class="img" round :src="user.photo" />
           <div class="loginname">{{ user.name }}</div>
-          <van-button class="loginbtn" size="mini" type="primary"
+          <van-button class="loginbtn" size="mini" type="primary" to="useredit"
             >编辑资料</van-button
           >
         </div>
@@ -69,6 +69,7 @@
 import { removeStor } from "@/utils/storage";
 import { userinfo } from "@/api/user";
 export default {
+  components: {},
   data() {
     return {
       loginstate: false,

@@ -6,7 +6,7 @@
         class="avatar"
         round
         fit="cover"
-        src="https://img.yzcdn.cn/vant/cat.jpeg"
+        :src="comItem.aut_photo"
       />
       <div slot="title" class="title-wrap">
         <div class="user-name">{{ comItem.aut_name }}</div>

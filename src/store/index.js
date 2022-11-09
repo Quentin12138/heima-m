@@ -9,6 +9,8 @@ export default new Vuex.Store({
     // text: 123,
     token: getItem("token"),
     newcomment: {},
+    articleId: "",
+    userinfo: {},
   },
   getters: {},
   mutations: {
@@ -19,6 +21,12 @@ export default new Vuex.Store({
     },
     setcomment(state, obj) {
       state.newcomment = obj;
+    },
+    setarticleId(state, num) {
+      state.articleId = num;
+    },
+    setiserinfo(state, obj) {
+      state.userinfo = obj;
     },
   },
   actions: {},

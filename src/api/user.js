@@ -16,3 +16,17 @@ export const userinfo = () =>
     // Bearer和token中间要留有空格
     // headers: { Authorization: `Bearer ${store.state.token.token}` },
   });
+
+//请求用户信息
+export const getuserinfo = () =>
+  request({
+    url: "/v1_0/user/profile",
+    method: "get",
+  });
+//请求用户信息
+export const setuserinfo = (data) =>
+  request({
+    url: "/v1_0/user/profile",
+    method: "patch",
+    data,
+  });
